@@ -1,0 +1,34 @@
+{
+  "name": "insiders",
+  "version": "1.0.0",
+  "description": "A project to enhance Solana signatures",
+  "main": "enhanceSignatures.js",
+  "scripts": {
+    "start": "node enhanceSignatures.js",
+    "fetch": "node fetchSignatures.js",
+    "parse-mint": "node parseMint.js",
+    "add-blocktime": "node addBlockTime.js",
+    "fetch-prices": "node fetchPrices.js",
+    "convert-timestamps": "node convertTimestamps.js",
+    "filter-prices": "node filterPrices.js"
+  },
+  "dependencies": {
+    "axios": "^1.4.0",
+    "bottleneck": "^2.19.5",
+    "dotenv": "^16.4.7",
+    "framer-motion": "^11.9.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "author": "Your Name",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrewbouras/insiders.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/andrewbouras/insiders/issues"
+  },
+  "homepage": "https://github.com/andrewbouras/insiders#readme"
+}

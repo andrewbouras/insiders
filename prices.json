@@ -1,0 +1,18 @@
+[
+  {
+    "price": 0.0006946909123941588,
+    "timestamp": 1735399569294,
+    "timestamp_unix": 1735399569,
+    "pool": "DFQ2vPcWZ8dqevhEcNbWiUcowaSovZTH1QUEacKNR5BB",
+    "mint": "FZP1muRBmSvbmoeo5tGGeLNUX3Fo4QXTPXQBx4csH6VZ",
+    "queriedBlockTime": 1735333966
+  },
+  {
+    "price": 0.053194695876620283,
+    "timestamp": 1735400926392,
+    "timestamp_unix": 1735400926,
+    "pool": "4sZerPmdcjzQCpSD5raAf4LRaR7S4sFFFx7vMvhiJ9E8",
+    "mint": "8bdhP1UQMevciC9oJ7NrvgDfoW8XPXPfbkkm6vKtMS7N",
+    "queriedBlockTime": 1735305300
+  }
+]
