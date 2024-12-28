@@ -310,14 +310,35 @@ function filterPrices(prices) {
     timestamp_est: convertToEST(price.timestamp)
   }));
 
-  const nullPrices = pricesWithEST.filter(item => item.price === null);
-  const validPrices = pricesWithEST.filter(item => item.price !== null);
+  // First split into null and valid prices
+  const initialNullPrices = pricesWithEST.filter(item => item.price === null);
+  const initialValidPrices = pricesWithEST.filter(item => item.price !== null);
 
-  fs.writeFileSync('prices-null.json', JSON.stringify(nullPrices, null, 2));
-  fs.writeFileSync('prices-valid.json', JSON.stringify(validPrices, null, 2));
+  // Deduplicate null prices
+  const nullMintMap = new Map();
+  initialNullPrices.forEach(price => {
+    if (!nullMintMap.has(price.mint)) {
+      nullMintMap.set(price.mint, price);
+    }
+  });
 
-  console.log(`Found ${nullPrices.length} null prices and ${validPrices.length} valid prices`);
-  console.log('Data has been written to prices-null.json and prices-valid.json');
+  // Deduplicate valid prices
+  const validMintMap = new Map();
+  initialValidPrices.forEach(price => {
+    if (!validMintMap.has(price.mint) || 
+        price.timestamp > validMintMap.get(price.mint).timestamp) {
+      validMintMap.set(price.mint, price);
+    }
+  });
+
+  const uniqueNullPrices = Array.from(nullMintMap.values());
+  const uniqueValidPrices = Array.from(validMintMap.values());
+
+  fs.writeFileSync('prices-null.json', JSON.stringify(uniqueNullPrices, null, 2));
+  fs.writeFileSync('prices-valid.json', JSON.stringify(uniqueValidPrices, null, 2));
+
+  console.log(`Found ${uniqueNullPrices.length} unique null prices and ${uniqueValidPrices.length} unique valid prices`);
+  console.log('Deduplicated data has been written to prices-null.json and prices-valid.json');
 }
 
 async function singleRunFlow() {
