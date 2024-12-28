@@ -1,4 +1,11 @@
-
 {
-  "walletAddress": "HuwdWCb8tHpTiv2U8W8SQebQYPc5BnNM3wori4ttsAJj"
+  "walletAddresses": [
+    "HuwdWCb8tHpTiv2U8W8SQebQYPc5BnNM3wori4ttsAJj",
+    "EnEJGqyqYXYrScxspWaVic1PuCY4PoYJTm8BWscerg7n",
+    "9rVnJzLBdLogyoAYaS2rxosMqua3LQmAGgQq6shWP1Xd",
+    "AaQbKAMJJstWz8UmQEr32hDWDev6gMVZy7H1Lb5HC9qq",
+    "4WFJTnoY4HBqAxhPzKchW1BRWNmiUqT4DQnvcycBt6S1",
+    "ChBN5tKG4qZdHpY1K2agNjsJF6FAivHuzfWZoGmqrpzK",
+    "FzwN37Lqb9AvhGXmoHLctqPoBKPStv32C1UjT752gKLe"
+  ]
 }

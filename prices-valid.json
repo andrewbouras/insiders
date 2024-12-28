@@ -1,18 +1,413 @@
 [
   {
-    "price": 0.0006946909123941588,
-    "timestamp": 1735399569294,
-    "timestamp_unix": 1735399569,
+    "price": 0.0006794254644379422,
+    "timestamp": 1735401041332,
+    "timestamp_unix": 1735401041,
     "pool": "DFQ2vPcWZ8dqevhEcNbWiUcowaSovZTH1QUEacKNR5BB",
     "mint": "FZP1muRBmSvbmoeo5tGGeLNUX3Fo4QXTPXQBx4csH6VZ",
-    "queriedBlockTime": 1735333966
+    "queriedBlockTime": 1735333966,
+    "timestamp_est": "12/28/2024, 10:50:41 AM"
   },
   {
-    "price": 0.053194695876620283,
-    "timestamp": 1735400926392,
-    "timestamp_unix": 1735400926,
+    "price": 0.05097727761883117,
+    "timestamp": 1735405202671,
+    "timestamp_unix": 1735405203,
     "pool": "4sZerPmdcjzQCpSD5raAf4LRaR7S4sFFFx7vMvhiJ9E8",
     "mint": "8bdhP1UQMevciC9oJ7NrvgDfoW8XPXPfbkkm6vKtMS7N",
-    "queriedBlockTime": 1735305300
+    "queriedBlockTime": 1735305300,
+    "timestamp_est": "12/28/2024, 12:00:02 PM"
+  },
+  {
+    "price": 0.05097727761883117,
+    "timestamp": 1735405202671,
+    "timestamp_unix": 1735405203,
+    "pool": "4sZerPmdcjzQCpSD5raAf4LRaR7S4sFFFx7vMvhiJ9E8",
+    "mint": "8bdhP1UQMevciC9oJ7NrvgDfoW8XPXPfbkkm6vKtMS7N",
+    "queriedBlockTime": 1735305193,
+    "timestamp_est": "12/28/2024, 12:00:02 PM"
+  },
+  {
+    "price": 0.05064896049162194,
+    "timestamp": 1735405215351,
+    "timestamp_unix": 1735405215,
+    "pool": "4sZerPmdcjzQCpSD5raAf4LRaR7S4sFFFx7vMvhiJ9E8",
+    "mint": "8bdhP1UQMevciC9oJ7NrvgDfoW8XPXPfbkkm6vKtMS7N",
+    "queriedBlockTime": 1735305142,
+    "timestamp_est": "12/28/2024, 12:00:15 PM"
+  },
+  {
+    "price": 0.05064896049162194,
+    "timestamp": 1735405215351,
+    "timestamp_unix": 1735405215,
+    "pool": "4sZerPmdcjzQCpSD5raAf4LRaR7S4sFFFx7vMvhiJ9E8",
+    "mint": "8bdhP1UQMevciC9oJ7NrvgDfoW8XPXPfbkkm6vKtMS7N",
+    "queriedBlockTime": 1735305109,
+    "timestamp_est": "12/28/2024, 12:00:15 PM"
+  },
+  {
+    "price": 0.05104696911512646,
+    "timestamp": 1735405236948,
+    "timestamp_unix": 1735405237,
+    "pool": "4sZerPmdcjzQCpSD5raAf4LRaR7S4sFFFx7vMvhiJ9E8",
+    "mint": "8bdhP1UQMevciC9oJ7NrvgDfoW8XPXPfbkkm6vKtMS7N",
+    "queriedBlockTime": 1735305091,
+    "timestamp_est": "12/28/2024, 12:00:36 PM"
+  },
+  {
+    "price": 0.051034428894817845,
+    "timestamp": 1735405246626,
+    "timestamp_unix": 1735405247,
+    "pool": "4sZerPmdcjzQCpSD5raAf4LRaR7S4sFFFx7vMvhiJ9E8",
+    "mint": "8bdhP1UQMevciC9oJ7NrvgDfoW8XPXPfbkkm6vKtMS7N",
+    "queriedBlockTime": 1735305081,
+    "timestamp_est": "12/28/2024, 12:00:46 PM"
+  },
+  {
+    "price": 0.000036097671511722696,
+    "timestamp": 1735405254313,
+    "timestamp_unix": 1735405254,
+    "pool": "BMoeJF8BZsathLBQYg1XznTtqV5iavFovsxTnjWPMHmM",
+    "mint": "HUhKCbvKe4D6x34PypW9AtE7z6S44WApeCFZ1JqWpump",
+    "queriedBlockTime": 1735404173,
+    "timestamp_est": "12/28/2024, 12:00:54 PM"
+  },
+  {
+    "price": 0.000036097671511722696,
+    "timestamp": 1735405254313,
+    "timestamp_unix": 1735405254,
+    "pool": "BMoeJF8BZsathLBQYg1XznTtqV5iavFovsxTnjWPMHmM",
+    "mint": "HUhKCbvKe4D6x34PypW9AtE7z6S44WApeCFZ1JqWpump",
+    "queriedBlockTime": 1735404124,
+    "timestamp_est": "12/28/2024, 12:00:54 PM"
+  },
+  {
+    "price": 0.000036097671511722696,
+    "timestamp": 1735405254313,
+    "timestamp_unix": 1735405254,
+    "pool": "BMoeJF8BZsathLBQYg1XznTtqV5iavFovsxTnjWPMHmM",
+    "mint": "HUhKCbvKe4D6x34PypW9AtE7z6S44WApeCFZ1JqWpump",
+    "queriedBlockTime": 1735403974,
+    "timestamp_est": "12/28/2024, 12:00:54 PM"
+  },
+  {
+    "price": 0.000036097671511722696,
+    "timestamp": 1735405254313,
+    "timestamp_unix": 1735405254,
+    "pool": "BMoeJF8BZsathLBQYg1XznTtqV5iavFovsxTnjWPMHmM",
+    "mint": "HUhKCbvKe4D6x34PypW9AtE7z6S44WApeCFZ1JqWpump",
+    "queriedBlockTime": 1735403545,
+    "timestamp_est": "12/28/2024, 12:00:54 PM"
+  },
+  {
+    "price": 0.000036097671511722696,
+    "timestamp": 1735405254313,
+    "timestamp_unix": 1735405254,
+    "pool": "BMoeJF8BZsathLBQYg1XznTtqV5iavFovsxTnjWPMHmM",
+    "mint": "HUhKCbvKe4D6x34PypW9AtE7z6S44WApeCFZ1JqWpump",
+    "queriedBlockTime": 1735403535,
+    "timestamp_est": "12/28/2024, 12:00:54 PM"
+  },
+  {
+    "price": 0.000036097671511722696,
+    "timestamp": 1735405254313,
+    "timestamp_unix": 1735405254,
+    "pool": "BMoeJF8BZsathLBQYg1XznTtqV5iavFovsxTnjWPMHmM",
+    "mint": "HUhKCbvKe4D6x34PypW9AtE7z6S44WApeCFZ1JqWpump",
+    "queriedBlockTime": 1735403373,
+    "timestamp_est": "12/28/2024, 12:00:54 PM"
+  },
+  {
+    "price": 0.00003627388417122375,
+    "timestamp": 1735405314839,
+    "timestamp_unix": 1735405315,
+    "pool": "BMoeJF8BZsathLBQYg1XznTtqV5iavFovsxTnjWPMHmM",
+    "mint": "HUhKCbvKe4D6x34PypW9AtE7z6S44WApeCFZ1JqWpump",
+    "queriedBlockTime": 1735403282,
+    "timestamp_est": "12/28/2024, 12:01:54 PM"
+  },
+  {
+    "price": 0.00003627388417122375,
+    "timestamp": 1735405314839,
+    "timestamp_unix": 1735405315,
+    "pool": "BMoeJF8BZsathLBQYg1XznTtqV5iavFovsxTnjWPMHmM",
+    "mint": "HUhKCbvKe4D6x34PypW9AtE7z6S44WApeCFZ1JqWpump",
+    "queriedBlockTime": 1735403134,
+    "timestamp_est": "12/28/2024, 12:01:54 PM"
+  },
+  {
+    "price": 0.00003627388417122375,
+    "timestamp": 1735405314839,
+    "timestamp_unix": 1735405315,
+    "pool": "BMoeJF8BZsathLBQYg1XznTtqV5iavFovsxTnjWPMHmM",
+    "mint": "HUhKCbvKe4D6x34PypW9AtE7z6S44WApeCFZ1JqWpump",
+    "queriedBlockTime": 1735403020,
+    "timestamp_est": "12/28/2024, 12:01:54 PM"
+  },
+  {
+    "price": 0.00003627388417122375,
+    "timestamp": 1735405314839,
+    "timestamp_unix": 1735405315,
+    "pool": "BMoeJF8BZsathLBQYg1XznTtqV5iavFovsxTnjWPMHmM",
+    "mint": "HUhKCbvKe4D6x34PypW9AtE7z6S44WApeCFZ1JqWpump",
+    "queriedBlockTime": 1735402829,
+    "timestamp_est": "12/28/2024, 12:01:54 PM"
+  },
+  {
+    "price": 0.00003627388417122375,
+    "timestamp": 1735405314839,
+    "timestamp_unix": 1735405315,
+    "pool": "BMoeJF8BZsathLBQYg1XznTtqV5iavFovsxTnjWPMHmM",
+    "mint": "HUhKCbvKe4D6x34PypW9AtE7z6S44WApeCFZ1JqWpump",
+    "queriedBlockTime": 1735402729,
+    "timestamp_est": "12/28/2024, 12:01:54 PM"
+  },
+  {
+    "price": 0.00003627388417122375,
+    "timestamp": 1735405314839,
+    "timestamp_unix": 1735405315,
+    "pool": "BMoeJF8BZsathLBQYg1XznTtqV5iavFovsxTnjWPMHmM",
+    "mint": "HUhKCbvKe4D6x34PypW9AtE7z6S44WApeCFZ1JqWpump",
+    "queriedBlockTime": 1735402626,
+    "timestamp_est": "12/28/2024, 12:01:54 PM"
+  },
+  {
+    "price": 0.00003627388417122375,
+    "timestamp": 1735405314839,
+    "timestamp_unix": 1735405315,
+    "pool": "BMoeJF8BZsathLBQYg1XznTtqV5iavFovsxTnjWPMHmM",
+    "mint": "HUhKCbvKe4D6x34PypW9AtE7z6S44WApeCFZ1JqWpump",
+    "queriedBlockTime": 1735402360,
+    "timestamp_est": "12/28/2024, 12:01:54 PM"
+  },
+  {
+    "price": 0.00003627388417122375,
+    "timestamp": 1735405314839,
+    "timestamp_unix": 1735405315,
+    "pool": "BMoeJF8BZsathLBQYg1XznTtqV5iavFovsxTnjWPMHmM",
+    "mint": "HUhKCbvKe4D6x34PypW9AtE7z6S44WApeCFZ1JqWpump",
+    "queriedBlockTime": 1735402089,
+    "timestamp_est": "12/28/2024, 12:01:54 PM"
+  },
+  {
+    "price": 0.00003627388417122375,
+    "timestamp": 1735405314839,
+    "timestamp_unix": 1735405315,
+    "pool": "BMoeJF8BZsathLBQYg1XznTtqV5iavFovsxTnjWPMHmM",
+    "mint": "HUhKCbvKe4D6x34PypW9AtE7z6S44WApeCFZ1JqWpump",
+    "queriedBlockTime": 1735402037,
+    "timestamp_est": "12/28/2024, 12:01:54 PM"
+  },
+  {
+    "price": 0.00003627388417122375,
+    "timestamp": 1735405314839,
+    "timestamp_unix": 1735405315,
+    "pool": "BMoeJF8BZsathLBQYg1XznTtqV5iavFovsxTnjWPMHmM",
+    "mint": "HUhKCbvKe4D6x34PypW9AtE7z6S44WApeCFZ1JqWpump",
+    "queriedBlockTime": 1735402032,
+    "timestamp_est": "12/28/2024, 12:01:54 PM"
+  },
+  {
+    "price": 0.00003627388417122375,
+    "timestamp": 1735405314839,
+    "timestamp_unix": 1735405315,
+    "pool": "BMoeJF8BZsathLBQYg1XznTtqV5iavFovsxTnjWPMHmM",
+    "mint": "HUhKCbvKe4D6x34PypW9AtE7z6S44WApeCFZ1JqWpump",
+    "queriedBlockTime": 1735401735,
+    "timestamp_est": "12/28/2024, 12:01:54 PM"
+  },
+  {
+    "price": 0.00003627388417122375,
+    "timestamp": 1735405314839,
+    "timestamp_unix": 1735405315,
+    "pool": "BMoeJF8BZsathLBQYg1XznTtqV5iavFovsxTnjWPMHmM",
+    "mint": "HUhKCbvKe4D6x34PypW9AtE7z6S44WApeCFZ1JqWpump",
+    "queriedBlockTime": 1735401581,
+    "timestamp_est": "12/28/2024, 12:01:54 PM"
+  },
+  {
+    "price": 0.01805867775014271,
+    "timestamp": 1735405442309,
+    "timestamp_unix": 1735405442,
+    "pool": "9Pk43Sr7J8GYQ1h89riWSSBVH4Cp6ZxoWez9xTiAm92T",
+    "mint": "3N2ETvNpPNAxhcaXgkhKoY1yDnQfs41Wnxsx5qNJpump",
+    "queriedBlockTime": 1735401359,
+    "timestamp_est": "12/28/2024, 12:04:02 PM"
+  },
+  {
+    "price": 1.0003852195711116,
+    "timestamp": 1735405453429,
+    "timestamp_unix": 1735405453,
+    "pool": "83v8iPyZihDEjDdY8RdZddyZNyUtXngz69Lgo9Kt5d6d",
+    "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    "queriedBlockTime": 1733581356,
+    "timestamp_est": "12/28/2024, 12:04:13 PM"
+  },
+  {
+    "price": 0.000032913799577311975,
+    "timestamp": 1735405366765,
+    "timestamp_unix": 1735405367,
+    "pool": "J6JL4Tnv7v3LDSJohuPkiicYTYTyguup1TDneUa1HiBN",
+    "mint": "HpzfAzGKZu27eyUZyNztSC2ePdvtdvuSF2vA69ktpump",
+    "queriedBlockTime": 1735358876,
+    "timestamp_est": "12/28/2024, 12:02:46 PM"
+  },
+  {
+    "price": 1.0166865364192026,
+    "timestamp": 1735405548121,
+    "timestamp_unix": 1735405548,
+    "pool": "FpCMFDFGYotvufJ7HrFHsWEiiQCGbkLCtwHiDnh7o28Q",
+    "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    "queriedBlockTime": 1735358774,
+    "timestamp_est": "12/28/2024, 12:05:48 PM"
+  },
+  {
+    "price": 0.00003552053651588861,
+    "timestamp": 1735405308069,
+    "timestamp_unix": 1735405308,
+    "pool": "ScQxAQV5FY2cgFky6MXFk2QzbDTc3Ta92J3TSG4Uhg4",
+    "mint": "Mse6hcdxMWgQgEW7AcidAYw2G5ucW5fC8XK3NWYpump",
+    "queriedBlockTime": 1735357333,
+    "timestamp_est": "12/28/2024, 12:01:48 PM"
+  },
+  {
+    "price": 0.000032913799577311975,
+    "timestamp": 1735405366765,
+    "timestamp_unix": 1735405367,
+    "pool": "J6JL4Tnv7v3LDSJohuPkiicYTYTyguup1TDneUa1HiBN",
+    "mint": "HpzfAzGKZu27eyUZyNztSC2ePdvtdvuSF2vA69ktpump",
+    "queriedBlockTime": 1735357290,
+    "timestamp_est": "12/28/2024, 12:02:46 PM"
+  },
+  {
+    "price": 0.000032913799577311975,
+    "timestamp": 1735405366765,
+    "timestamp_unix": 1735405367,
+    "pool": "J6JL4Tnv7v3LDSJohuPkiicYTYTyguup1TDneUa1HiBN",
+    "mint": "HpzfAzGKZu27eyUZyNztSC2ePdvtdvuSF2vA69ktpump",
+    "queriedBlockTime": 1735294562,
+    "timestamp_est": "12/28/2024, 12:02:46 PM"
+  },
+  {
+    "price": 1.000318859339228,
+    "timestamp": 1735405595052,
+    "timestamp_unix": 1735405595,
+    "pool": "FpCMFDFGYotvufJ7HrFHsWEiiQCGbkLCtwHiDnh7o28Q",
+    "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    "queriedBlockTime": 1735294414,
+    "timestamp_est": "12/28/2024, 12:06:35 PM"
+  },
+  {
+    "price": 0.0001,
+    "timestamp": 1733886963206,
+    "timestamp_unix": 1733886963,
+    "pool": "3vjxfm9Q3JfN5XeHEDykQbTXnWhLGESeSoB5LNa6PKFG",
+    "mint": "B1oeo1yDfJCWMDRRyct5CLKnpH86R8nGNsMVNRSCx52e",
+    "queriedBlockTime": 1733784976,
+    "timestamp_est": "12/10/2024, 10:16:03 PM"
+  },
+  {
+    "price": 0.0001,
+    "timestamp": 1733886963206,
+    "timestamp_unix": 1733886963,
+    "pool": "3vjxfm9Q3JfN5XeHEDykQbTXnWhLGESeSoB5LNa6PKFG",
+    "mint": "B1oeo1yDfJCWMDRRyct5CLKnpH86R8nGNsMVNRSCx52e",
+    "queriedBlockTime": 1733782527,
+    "timestamp_est": "12/10/2024, 10:16:03 PM"
+  },
+  {
+    "price": 0.0001,
+    "timestamp": 1733886963206,
+    "timestamp_unix": 1733886963,
+    "pool": "3vjxfm9Q3JfN5XeHEDykQbTXnWhLGESeSoB5LNa6PKFG",
+    "mint": "B1oeo1yDfJCWMDRRyct5CLKnpH86R8nGNsMVNRSCx52e",
+    "queriedBlockTime": 1733782505,
+    "timestamp_est": "12/10/2024, 10:16:03 PM"
+  },
+  {
+    "price": 0.0001,
+    "timestamp": 1733886963206,
+    "timestamp_unix": 1733886963,
+    "pool": "3vjxfm9Q3JfN5XeHEDykQbTXnWhLGESeSoB5LNa6PKFG",
+    "mint": "B1oeo1yDfJCWMDRRyct5CLKnpH86R8nGNsMVNRSCx52e",
+    "queriedBlockTime": 1733772534,
+    "timestamp_est": "12/10/2024, 10:16:03 PM"
+  },
+  {
+    "price": 0.0001,
+    "timestamp": 1733886963206,
+    "timestamp_unix": 1733886963,
+    "pool": "3vjxfm9Q3JfN5XeHEDykQbTXnWhLGESeSoB5LNa6PKFG",
+    "mint": "B1oeo1yDfJCWMDRRyct5CLKnpH86R8nGNsMVNRSCx52e",
+    "queriedBlockTime": 1733722174,
+    "timestamp_est": "12/10/2024, 10:16:03 PM"
+  },
+  {
+    "price": 0.0001,
+    "timestamp": 1733886963206,
+    "timestamp_unix": 1733886963,
+    "pool": "3vjxfm9Q3JfN5XeHEDykQbTXnWhLGESeSoB5LNa6PKFG",
+    "mint": "B1oeo1yDfJCWMDRRyct5CLKnpH86R8nGNsMVNRSCx52e",
+    "queriedBlockTime": 1733722174,
+    "timestamp_est": "12/10/2024, 10:16:03 PM"
+  },
+  {
+    "price": 0.0001,
+    "timestamp": 1733886963206,
+    "timestamp_unix": 1733886963,
+    "pool": "3vjxfm9Q3JfN5XeHEDykQbTXnWhLGESeSoB5LNa6PKFG",
+    "mint": "B1oeo1yDfJCWMDRRyct5CLKnpH86R8nGNsMVNRSCx52e",
+    "queriedBlockTime": 1733722174,
+    "timestamp_est": "12/10/2024, 10:16:03 PM"
+  },
+  {
+    "price": 0.0001,
+    "timestamp": 1733886963206,
+    "timestamp_unix": 1733886963,
+    "pool": "3vjxfm9Q3JfN5XeHEDykQbTXnWhLGESeSoB5LNa6PKFG",
+    "mint": "B1oeo1yDfJCWMDRRyct5CLKnpH86R8nGNsMVNRSCx52e",
+    "queriedBlockTime": 1733722174,
+    "timestamp_est": "12/10/2024, 10:16:03 PM"
+  },
+  {
+    "error": "Token not indexed yet, please try again later",
+    "mint": "Cbqx7MSL1z683547rLVgNQs2GT9A6uToF1W8qrvw9qUE",
+    "queriedBlockTime": 1735403376,
+    "timestamp_est": "Invalid Date"
+  },
+  {
+    "price": 0.0001,
+    "timestamp": 1733968546013,
+    "timestamp_unix": 1733968546,
+    "pool": "Gt4kpWFyaBHrj45yjF6Sh7Bt7ek7yDubPQeqeGwC7sc",
+    "mint": "Ga2C5WPvw3Na7fbCoBWAdyhGqbGd7r83PD94zFFUpump",
+    "queriedBlockTime": 1734424978,
+    "timestamp_est": "12/11/2024, 08:55:46 PM"
+  },
+  {
+    "price": 0.0001,
+    "timestamp": 1733671903083,
+    "timestamp_unix": 1733671903,
+    "pool": "231gk5p467gR5yepWVNoGLScfouwq6ChsQpjG7iLoG7i",
+    "mint": "2tdbuR45L9xgewnkWdWcPwpuSk71iiaioNM4Ts2VUsmo",
+    "queriedBlockTime": 1734424957,
+    "timestamp_est": "12/08/2024, 10:31:43 AM"
+  },
+  {
+    "price": 0.0001,
+    "timestamp": 1734816669306,
+    "timestamp_unix": 1734816669,
+    "pool": "bZ9inDPw3fJsFNt96rGTNnLBxBjQKTGdUZurHmjkSnD",
+    "mint": "ENtpMf3NpQnLt96hoUmBLtKomyA19HRY7vMMiEmzKJcV",
+    "queriedBlockTime": 1734424935,
+    "timestamp_est": "12/21/2024, 04:31:09 PM"
+  },
+  {
+    "price": 0.0001,
+    "timestamp": 1733732014418,
+    "timestamp_unix": 1733732014,
+    "pool": "5aJQspedT8wCXnzqBiSfDsPcEgzE2Wkp6BwS5uNa4VoA",
+    "mint": "AKrZexhhxA3Eq3uLeDkXoZbQLan39Epr4U6HnszbqZQm",
+    "queriedBlockTime": 1734424910,
+    "timestamp_est": "12/09/2024, 03:13:34 AM"
   }
 ]
