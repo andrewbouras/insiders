@@ -1,0 +1,42 @@
+[
+  {
+    "price": null,
+    "timestamp": 1734244039000,
+    "mint": "BAxz5TdLuTpSRHsKuzu4C7En93tyC3zd7RkdjrQgQeLf",
+    "queriedBlockTime": 1734244039,
+    "error": "Internal Server Error",
+    "timestamp_est": "12/15/2024, 1:27:19 AM"
+  },
+  {
+    "price": null,
+    "timestamp": 1734017010000,
+    "mint": "FQUmn817K362gUcQ44qX7WHA4qsfCsTGdusKoFG23u14",
+    "queriedBlockTime": 1734017010,
+    "error": "Internal Server Error",
+    "timestamp_est": "12/12/2024, 10:23:30 AM"
+  },
+  {
+    "price": null,
+    "timestamp": 1735218462000,
+    "mint": "2HAwsXPeaHwn3u8xcmbhZDGF9Ycnn7RhzBFWRmXY1vz4",
+    "queriedBlockTime": 1735218462,
+    "error": "Internal Server Error",
+    "timestamp_est": "12/26/2024, 8:07:42 AM"
+  },
+  {
+    "price": null,
+    "timestamp": 1735033784000,
+    "mint": "AbFLgGGYBTv5ypa8PgZX4zg3UoP7YeFa8SvQ4AYGzPvD",
+    "queriedBlockTime": 1735033784,
+    "error": "Token not indexed yet, please try again later",
+    "timestamp_est": "12/24/2024, 4:49:44 AM"
+  },
+  {
+    "price": null,
+    "timestamp": 1735346903000,
+    "mint": "CaijggexVJoZrmkQ4U1RCEyZS9MbPNSQQetNKCqimCCF",
+    "queriedBlockTime": 1735346903,
+    "error": "Token not indexed yet, please try again later",
+    "timestamp_est": "12/27/2024, 7:48:23 PM"
+  }
+]

@@ -1,362 +1,322 @@
 [
   {
     "price": null,
-    "timestamp": 1735403342000,
+    "timestamp": 1735401126000,
+    "mint": "CWnYMAbUozxjxrykBrR9gufRZXmvTYMhUzb1QSQ4YNLu",
+    "queriedBlockTime": 1735401126,
+    "error": "Internal Server Error",
+    "timestamp_est": "12/28/2024, 10:52:06 AM"
+  },
+  {
+    "price": null,
+    "timestamp": 1735278200000,
+    "mint": "ECquM2DJkrY5faEHsrXosErvR2S1KZ86UTHyTNAv1q1T",
+    "queriedBlockTime": 1735278200,
+    "error": "Token not indexed yet, please try again later",
+    "timestamp_est": "12/27/2024, 12:43:20 AM"
+  },
+  {
+    "price": null,
+    "timestamp": 1734596288000,
+    "mint": "4ApkE1ENhVifNHaGLwDx7w4furwQZ8PTNFiav7TB25qh",
+    "queriedBlockTime": 1734596288,
+    "error": "Internal Server Error",
+    "timestamp_est": "12/19/2024, 3:18:08 AM"
+  },
+  {
+    "price": null,
+    "timestamp": 1734532796000,
+    "mint": "ACzYyQoKufoYzEhtFbWb7vgLT9ECTeVSUKCu78paV8K4",
+    "queriedBlockTime": 1734532796,
+    "error": "Internal Server Error",
+    "timestamp_est": "12/18/2024, 9:39:56 AM"
+  },
+  {
+    "price": null,
+    "timestamp": 1733813573000,
+    "mint": "44yTH1ux9d4QTLcAGFV5d9BBCtkHJ8pNsyeSRz2b9B12",
+    "queriedBlockTime": 1733813573,
+    "error": "Internal Server Error",
+    "timestamp_est": "12/10/2024, 1:52:53 AM"
+  },
+  {
+    "price": null,
+    "timestamp": 1726168701000,
+    "mint": "4fxpPaHRPtxMi4FpfEVErDupyrY6CNDZGmksmgYHKbpj",
+    "queriedBlockTime": 1726168701,
+    "error": "Token not indexed yet, please try again later",
+    "timestamp_est": "9/12/2024, 3:18:21 PM"
+  },
+  {
+    "price": null,
+    "timestamp": 1735402055000,
+    "mint": "C75QsUstMDRXWAKmowq2nG2pv9BoaB6btj3B3P1HE2jR",
+    "queriedBlockTime": 1735402055,
+    "error": "Internal Server Error",
+    "timestamp_est": "12/28/2024, 11:07:35 AM"
+  },
+  {
+    "price": null,
+    "timestamp": 1734851352000,
+    "mint": "ASJ2UB6a4zbEQwrc9CYqGzdejCjmfrzAYygg2L1etXz3",
+    "queriedBlockTime": 1734851352,
+    "error": "Internal Server Error",
+    "timestamp_est": "12/22/2024, 2:09:12 AM"
+  },
+  {
+    "price": null,
+    "timestamp": 1734579834000,
+    "mint": "E2CogovmJea5ub1ph4eSH2WgfyjHNZHCu856J6QqxsTf",
+    "queriedBlockTime": 1734579834,
+    "error": "Internal Server Error",
+    "timestamp_est": "12/18/2024, 10:43:54 PM"
+  },
+  {
+    "price": null,
+    "timestamp": 1735276594000,
+    "mint": "G4jRzWw5A8J8k3eGppctaXjBS24xktK4bAAA2Z6mXY2K",
+    "queriedBlockTime": 1735276594,
+    "error": "Internal Server Error",
+    "timestamp_est": "12/27/2024, 12:16:34 AM"
+  },
+  {
+    "price": null,
+    "timestamp": 1733288736000,
+    "mint": "3L56NZ2Qn8XLt7GxRGcE68NsHRMgEFs8kQAbwTLKcXPL",
+    "queriedBlockTime": 1733288736,
+    "error": "Internal Server Error",
+    "timestamp_est": "12/4/2024, 12:05:36 AM"
+  },
+  {
+    "price": null,
+    "timestamp": 1735399490000,
+    "mint": "7rAcrfXUPW92cV9aCqdBF64hW6oNgUwAbiPtxfUk4FKE",
+    "queriedBlockTime": 1735399490,
+    "error": "Internal Server Error",
+    "timestamp_est": "12/28/2024, 10:24:50 AM"
+  },
+  {
+    "price": null,
+    "timestamp": 1735116168000,
+    "mint": "2rYmanefN8uCQuHyrujudcY8ji8QGPwiYyz9hHvaoVSH",
+    "queriedBlockTime": 1735116168,
+    "error": "Internal Server Error",
+    "timestamp_est": "12/25/2024, 3:42:48 AM"
+  },
+  {
+    "price": null,
+    "timestamp": 1735102703000,
+    "mint": "GjyaaGFnKt7d58KGoXBJW25CpCHxfWCPYFQfJYtWjscu",
+    "queriedBlockTime": 1735102703,
+    "error": "Internal Server Error",
+    "timestamp_est": "12/24/2024, 11:58:23 PM"
+  },
+  {
+    "price": null,
+    "timestamp": 1735099661000,
+    "mint": "9pzd89C3W6M4XLnesqAXdRh3KyS3JkzN6ug4q6JNHLRB",
+    "queriedBlockTime": 1735099661,
+    "error": "Internal Server Error",
+    "timestamp_est": "12/24/2024, 11:07:41 PM"
+  },
+  {
+    "price": null,
+    "timestamp": 1735276899000,
     "mint": "DTuCpNBrta7tWAhNTHHPCgQMMzErxaLKVrBmHRuMyN9c",
-    "queriedBlockTime": 1735403342,
+    "queriedBlockTime": 1735276899,
     "error": "Internal Server Error",
-    "timestamp_est": "12/28/2024, 11:29:02 AM"
+    "timestamp_est": "12/27/2024, 12:21:39 AM"
   },
   {
     "price": null,
-    "timestamp": 1733110307000,
-    "mint": "9XEPQCZxQd3hMezGFEtxBHstx86QyjHUrTZnutqKTp9b",
-    "queriedBlockTime": 1733110307,
+    "timestamp": 1735399986000,
+    "mint": "DA4pMT9nZA59MhMxEoU1X8ra2cSKxSUKahdb2PMKhvip",
+    "queriedBlockTime": 1735399986,
     "error": "Internal Server Error",
-    "timestamp_est": "12/01/2024, 10:31:47 PM"
+    "timestamp_est": "12/28/2024, 10:33:06 AM"
   },
   {
     "price": null,
-    "timestamp": 1733110307000,
-    "mint": "9XEPQCZxQd3hMezGFEtxBHstx86QyjHUrTZnutqKTp9b",
-    "queriedBlockTime": 1733110307,
+    "timestamp": 1735399930000,
+    "mint": "CPxoeK4M4wBsjx6ckwf6UmjbvZbzJE7hD5eQUSLeyEsq",
+    "queriedBlockTime": 1735399930,
     "error": "Internal Server Error",
-    "timestamp_est": "12/01/2024, 10:31:47 PM"
+    "timestamp_est": "12/28/2024, 10:32:10 AM"
   },
   {
     "price": null,
-    "timestamp": 1733110307000,
-    "mint": "9XEPQCZxQd3hMezGFEtxBHstx86QyjHUrTZnutqKTp9b",
-    "queriedBlockTime": 1733110307,
-    "error": "Internal Server Error",
-    "timestamp_est": "12/01/2024, 10:31:47 PM"
+    "timestamp": 1735418111000,
+    "mint": "1ZPPXcs2R2gB47CQxL4K4hmVcMapj41jadB1fC3uV84",
+    "queriedBlockTime": 1735418111,
+    "error": "Token not indexed yet, please try again later",
+    "timestamp_est": "12/28/2024, 3:35:11 PM"
   },
   {
     "price": null,
-    "timestamp": 1733110301000,
-    "mint": "9XEPQCZxQd3hMezGFEtxBHstx86QyjHUrTZnutqKTp9b",
-    "queriedBlockTime": 1733110301,
+    "timestamp": 1734532796000,
+    "mint": "ACzYyQoKufoYzEhtFbWb7vgLT9ECTeVSUKCu78paV8K4",
+    "queriedBlockTime": 1734532796,
     "error": "Internal Server Error",
-    "timestamp_est": "12/01/2024, 10:31:41 PM"
+    "timestamp_est": "12/18/2024, 9:39:56 AM"
   },
   {
     "price": null,
-    "timestamp": 1733110277000,
-    "mint": "9XEPQCZxQd3hMezGFEtxBHstx86QyjHUrTZnutqKTp9b",
-    "queriedBlockTime": 1733110277,
+    "timestamp": 1735417407000,
+    "mint": "BdZPG9xWrG3uFrx2KrUW1jT4tZ9VKPDWknYihzoPRJS3",
+    "queriedBlockTime": 1735417407,
     "error": "Internal Server Error",
-    "timestamp_est": "12/01/2024, 10:31:17 PM"
+    "timestamp_est": "12/28/2024, 3:23:27 PM"
   },
   {
     "price": null,
-    "timestamp": 1733110272000,
-    "mint": "9XEPQCZxQd3hMezGFEtxBHstx86QyjHUrTZnutqKTp9b",
-    "queriedBlockTime": 1733110272,
+    "timestamp": 1734532484000,
+    "mint": "ACzYyQoKufoYzEhtFbWb7vgLT9ECTeVSUKCu78paV8K4",
+    "queriedBlockTime": 1734532484,
     "error": "Internal Server Error",
-    "timestamp_est": "12/01/2024, 10:31:12 PM"
+    "timestamp_est": "12/18/2024, 9:34:44 AM"
   },
   {
     "price": null,
-    "timestamp": 1733110264000,
-    "mint": "9XEPQCZxQd3hMezGFEtxBHstx86QyjHUrTZnutqKTp9b",
-    "queriedBlockTime": 1733110264,
+    "timestamp": 1735364684000,
+    "mint": "7rAcrfXUPW92cV9aCqdBF64hW6oNgUwAbiPtxfUk4FKE",
+    "queriedBlockTime": 1735364684,
     "error": "Internal Server Error",
-    "timestamp_est": "12/01/2024, 10:31:04 PM"
+    "timestamp_est": "12/28/2024, 12:44:44 AM"
   },
   {
     "price": null,
-    "timestamp": 1733110262000,
-    "mint": "9XEPQCZxQd3hMezGFEtxBHstx86QyjHUrTZnutqKTp9b",
-    "queriedBlockTime": 1733110262,
-    "error": "Internal Server Error",
-    "timestamp_est": "12/01/2024, 10:31:02 PM"
+    "timestamp": 1735418164000,
+    "mint": "CWs9prKh7uhRASzi4mfHnLs9QYxsDNA4fotNSq8Uig2K",
+    "queriedBlockTime": 1735418164,
+    "error": "Token not indexed yet, please try again later",
+    "timestamp_est": "12/28/2024, 3:36:04 PM"
   },
   {
     "price": null,
-    "timestamp": 1733110262000,
-    "mint": "9XEPQCZxQd3hMezGFEtxBHstx86QyjHUrTZnutqKTp9b",
-    "queriedBlockTime": 1733110262,
+    "timestamp": 1735397604000,
+    "mint": "E3MK3DQ4YMLkd9MzVfna9KSpzfcGYC2T937PW9wCH9Xg",
+    "queriedBlockTime": 1735397604,
     "error": "Internal Server Error",
-    "timestamp_est": "12/01/2024, 10:31:02 PM"
+    "timestamp_est": "12/28/2024, 9:53:24 AM"
   },
   {
     "price": null,
-    "timestamp": 1733110262000,
-    "mint": "9XEPQCZxQd3hMezGFEtxBHstx86QyjHUrTZnutqKTp9b",
-    "queriedBlockTime": 1733110262,
-    "error": "Internal Server Error",
-    "timestamp_est": "12/01/2024, 10:31:02 PM"
+    "timestamp": 1735316069000,
+    "mint": "5Wo6qy3PYcahTUnsgScPLtKzZgWuvBH4h3XeVJPHQrSw",
+    "queriedBlockTime": 1735316069,
+    "error": "Token not indexed yet, please try again later",
+    "timestamp_est": "12/27/2024, 11:14:29 AM"
   },
   {
     "price": null,
-    "timestamp": 1733110237000,
-    "mint": "9XEPQCZxQd3hMezGFEtxBHstx86QyjHUrTZnutqKTp9b",
-    "queriedBlockTime": 1733110237,
+    "timestamp": 1735021927000,
+    "mint": "6e1nBgKa2yfYDLkd5JcMqXQywUphj2VY1NbwtcoTVg9g",
+    "queriedBlockTime": 1735021927,
     "error": "Internal Server Error",
-    "timestamp_est": "12/01/2024, 10:30:37 PM"
+    "timestamp_est": "12/24/2024, 1:32:07 AM"
   },
   {
     "price": null,
-    "timestamp": 1733110237000,
-    "mint": "9XEPQCZxQd3hMezGFEtxBHstx86QyjHUrTZnutqKTp9b",
-    "queriedBlockTime": 1733110237,
+    "timestamp": 1735205086000,
+    "mint": "Gjb3oR9LZNB4oCV6A7evzGb1p39tuTTYZwhu2VqEqTS",
+    "queriedBlockTime": 1735205086,
     "error": "Internal Server Error",
-    "timestamp_est": "12/01/2024, 10:30:37 PM"
+    "timestamp_est": "12/26/2024, 4:24:46 AM"
   },
   {
     "price": null,
-    "timestamp": 1733110237000,
-    "mint": "9XEPQCZxQd3hMezGFEtxBHstx86QyjHUrTZnutqKTp9b",
-    "queriedBlockTime": 1733110237,
-    "error": "Internal Server Error",
-    "timestamp_est": "12/01/2024, 10:30:37 PM"
+    "timestamp": 1735304409000,
+    "mint": "TVdnpCwoXqh5y3od3dZFwRueaG8MXR3R2JdphrKznF3",
+    "queriedBlockTime": 1735304409,
+    "error": "Token not indexed yet, please try again later",
+    "timestamp_est": "12/27/2024, 8:00:09 AM"
   },
   {
     "price": null,
-    "timestamp": 1733110237000,
-    "mint": "9XEPQCZxQd3hMezGFEtxBHstx86QyjHUrTZnutqKTp9b",
-    "queriedBlockTime": 1733110237,
-    "error": "Internal Server Error",
-    "timestamp_est": "12/01/2024, 10:30:37 PM"
+    "timestamp": 1735215777000,
+    "mint": "TVdnpCwoXqh5y3od3dZFwRueaG8MXR3R2JdphrKznF3",
+    "queriedBlockTime": 1735215777,
+    "error": "Token not indexed yet, please try again later",
+    "timestamp_est": "12/26/2024, 7:22:57 AM"
   },
   {
     "price": null,
-    "timestamp": 1735400430000,
-    "mint": "GjyaaGFnKt7d58KGoXBJW25CpCHxfWCPYFQfJYtWjscu",
-    "queriedBlockTime": 1735400430,
-    "error": "Internal Server Error",
-    "timestamp_est": "12/28/2024, 10:40:30 AM"
+    "timestamp": 1735215587000,
+    "mint": "TVdnpCwoXqh5y3od3dZFwRueaG8MXR3R2JdphrKznF3",
+    "queriedBlockTime": 1735215587,
+    "error": "Token not indexed yet, please try again later",
+    "timestamp_est": "12/26/2024, 7:19:47 AM"
   },
   {
     "price": null,
-    "timestamp": 1735400370000,
-    "mint": "GjyaaGFnKt7d58KGoXBJW25CpCHxfWCPYFQfJYtWjscu",
-    "queriedBlockTime": 1735400370,
-    "error": "Internal Server Error",
-    "timestamp_est": "12/28/2024, 10:39:30 AM"
+    "timestamp": 1735215551000,
+    "mint": "TVdnpCwoXqh5y3od3dZFwRueaG8MXR3R2JdphrKznF3",
+    "queriedBlockTime": 1735215551,
+    "error": "Token not indexed yet, please try again later",
+    "timestamp_est": "12/26/2024, 7:19:11 AM"
   },
   {
     "price": null,
-    "timestamp": 1735400363000,
-    "mint": "GjyaaGFnKt7d58KGoXBJW25CpCHxfWCPYFQfJYtWjscu",
-    "queriedBlockTime": 1735400363,
-    "error": "Internal Server Error",
-    "timestamp_est": "12/28/2024, 10:39:23 AM"
+    "timestamp": 1727361188000,
+    "mint": "F4dAdM4GVUuhMc6z1ziAdjTppZPMtA88eGSHg3nDSmtR",
+    "queriedBlockTime": 1727361188,
+    "error": "Token not indexed yet, please try again later",
+    "timestamp_est": "9/26/2024, 10:33:08 AM"
   },
   {
     "price": null,
-    "timestamp": 1735400357000,
-    "mint": "GjyaaGFnKt7d58KGoXBJW25CpCHxfWCPYFQfJYtWjscu",
-    "queriedBlockTime": 1735400357,
+    "timestamp": 1734805350000,
+    "mint": "7JMnnvtsb7GVYR4Uckk3zghtSj1NgLsypv8WWeGBYSX2",
+    "queriedBlockTime": 1734805350,
     "error": "Internal Server Error",
-    "timestamp_est": "12/28/2024, 10:39:17 AM"
+    "timestamp_est": "12/21/2024, 1:22:30 PM"
   },
   {
     "price": null,
-    "timestamp": 1735400357000,
-    "mint": "GjyaaGFnKt7d58KGoXBJW25CpCHxfWCPYFQfJYtWjscu",
-    "queriedBlockTime": 1735400357,
-    "error": "Internal Server Error",
-    "timestamp_est": "12/28/2024, 10:39:17 AM"
-  },
-  {
-    "price": null,
-    "timestamp": 1735400353000,
-    "mint": "GjyaaGFnKt7d58KGoXBJW25CpCHxfWCPYFQfJYtWjscu",
-    "queriedBlockTime": 1735400353,
-    "error": "Internal Server Error",
-    "timestamp_est": "12/28/2024, 10:39:13 AM"
-  },
-  {
-    "price": null,
-    "timestamp": 1735400353000,
-    "mint": "GjyaaGFnKt7d58KGoXBJW25CpCHxfWCPYFQfJYtWjscu",
-    "queriedBlockTime": 1735400353,
-    "error": "Internal Server Error",
-    "timestamp_est": "12/28/2024, 10:39:13 AM"
-  },
-  {
-    "price": null,
-    "timestamp": 1735400353000,
-    "mint": "GjyaaGFnKt7d58KGoXBJW25CpCHxfWCPYFQfJYtWjscu",
-    "queriedBlockTime": 1735400353,
-    "error": "Internal Server Error",
-    "timestamp_est": "12/28/2024, 10:39:13 AM"
-  },
-  {
-    "price": null,
-    "timestamp": 1735400353000,
-    "mint": "GjyaaGFnKt7d58KGoXBJW25CpCHxfWCPYFQfJYtWjscu",
-    "queriedBlockTime": 1735400353,
-    "error": "Internal Server Error",
-    "timestamp_est": "12/28/2024, 10:39:13 AM"
-  },
-  {
-    "price": null,
-    "timestamp": 1735400353000,
-    "mint": "GjyaaGFnKt7d58KGoXBJW25CpCHxfWCPYFQfJYtWjscu",
-    "queriedBlockTime": 1735400353,
-    "error": "Internal Server Error",
-    "timestamp_est": "12/28/2024, 10:39:13 AM"
-  },
-  {
-    "price": null,
-    "timestamp": 1735400353000,
-    "mint": "GjyaaGFnKt7d58KGoXBJW25CpCHxfWCPYFQfJYtWjscu",
-    "queriedBlockTime": 1735400353,
-    "error": "Internal Server Error",
-    "timestamp_est": "12/28/2024, 10:39:13 AM"
-  },
-  {
-    "price": null,
-    "timestamp": 1735400353000,
-    "mint": "GjyaaGFnKt7d58KGoXBJW25CpCHxfWCPYFQfJYtWjscu",
-    "queriedBlockTime": 1735400353,
-    "error": "Internal Server Error",
-    "timestamp_est": "12/28/2024, 10:39:13 AM"
-  },
-  {
-    "price": null,
-    "timestamp": 1735400353000,
-    "mint": "GjyaaGFnKt7d58KGoXBJW25CpCHxfWCPYFQfJYtWjscu",
-    "queriedBlockTime": 1735400353,
-    "error": "Internal Server Error",
-    "timestamp_est": "12/28/2024, 10:39:13 AM"
-  },
-  {
-    "price": null,
-    "timestamp": 1735400353000,
-    "mint": "GjyaaGFnKt7d58KGoXBJW25CpCHxfWCPYFQfJYtWjscu",
-    "queriedBlockTime": 1735400353,
-    "error": "Internal Server Error",
-    "timestamp_est": "12/28/2024, 10:39:13 AM"
-  },
-  {
-    "price": null,
-    "timestamp": 1735400353000,
-    "mint": "GjyaaGFnKt7d58KGoXBJW25CpCHxfWCPYFQfJYtWjscu",
-    "queriedBlockTime": 1735400353,
-    "error": "Internal Server Error",
-    "timestamp_est": "12/28/2024, 10:39:13 AM"
-  },
-  {
-    "price": null,
-    "timestamp": 1734424884000,
-    "mint": "HKoLN2Amt7yeZjn2H3UqzbCFyTxMXjzBpciDmzQZn3n3",
-    "queriedBlockTime": 1734424884,
-    "error": "Internal Server Error",
-    "timestamp_est": "12/17/2024, 03:41:24 AM"
-  },
-  {
-    "price": null,
-    "timestamp": 1734424858000,
-    "mint": "3JxnTwkSzeynPejHKwEhMC5y6FXmgFC2ayRncZj3onQd",
-    "queriedBlockTime": 1734424858,
-    "error": "Internal Server Error",
-    "timestamp_est": "12/17/2024, 03:40:58 AM"
-  },
-  {
-    "price": null,
-    "timestamp": 1734424837000,
-    "mint": "9WmgTrwGQLYxGpMSuA1vWraGzNVwm6n91mr3Jh9r8Y1",
-    "queriedBlockTime": 1734424837,
-    "error": "Internal Server Error",
-    "timestamp_est": "12/17/2024, 03:40:37 AM"
-  },
-  {
-    "price": null,
-    "timestamp": 1734424810000,
-    "mint": "5EYX9n3XcfmTyxKLiE7koe4SMtRkzUZxr9YCFGVWzjVy",
-    "queriedBlockTime": 1734424810,
-    "error": "Internal Server Error",
-    "timestamp_est": "12/17/2024, 03:40:10 AM"
-  },
-  {
-    "price": null,
-    "timestamp": 1734424790000,
-    "mint": "LELMkQdrrGrEhS1yzkMJc1Fz8qARyTSYQB7EJiibvP5",
-    "queriedBlockTime": 1734424790,
-    "error": "Internal Server Error",
-    "timestamp_est": "12/17/2024, 03:39:50 AM"
-  },
-  {
-    "price": null,
-    "timestamp": 1734414067000,
+    "timestamp": 1735160073000,
     "mint": "FeNYHjGXijAKN8kYiKKJtSRG9U9jDokAxL8B7kP1RD9J",
-    "queriedBlockTime": 1734414067,
+    "queriedBlockTime": 1735160073,
     "error": "Internal Server Error",
-    "timestamp_est": "12/17/2024, 12:41:07 AM"
+    "timestamp_est": "12/25/2024, 3:54:33 PM"
   },
   {
     "price": null,
-    "timestamp": 1734414067000,
+    "timestamp": 1734956439000,
     "mint": "FeNYHjGXijAKN8kYiKKJtSRG9U9jDokAxL8B7kP1RD9J",
-    "queriedBlockTime": 1734414067,
+    "queriedBlockTime": 1734956439,
     "error": "Internal Server Error",
-    "timestamp_est": "12/17/2024, 12:41:07 AM"
+    "timestamp_est": "12/23/2024, 7:20:39 AM"
   },
   {
     "price": null,
-    "timestamp": 1734414067000,
-    "mint": "FeNYHjGXijAKN8kYiKKJtSRG9U9jDokAxL8B7kP1RD9J",
-    "queriedBlockTime": 1734414067,
+    "timestamp": 1734088286000,
+    "mint": "6QuZqQCxKbAp1tVMsxCxfoDE3AV6yFV1wWeW7nqBLpX2",
+    "queriedBlockTime": 1734088286,
     "error": "Internal Server Error",
-    "timestamp_est": "12/17/2024, 12:41:07 AM"
+    "timestamp_est": "12/13/2024, 6:11:26 AM"
   },
   {
     "price": null,
-    "timestamp": 1734414067000,
-    "mint": "FeNYHjGXijAKN8kYiKKJtSRG9U9jDokAxL8B7kP1RD9J",
-    "queriedBlockTime": 1734414067,
-    "error": "Internal Server Error",
-    "timestamp_est": "12/17/2024, 12:41:07 AM"
+    "timestamp": 1726209037000,
+    "mint": "4xK6x6Gpz3AcfPcJM7iLiri2LvoJi7EMWqQXYU9BcVyk",
+    "queriedBlockTime": 1726209037,
+    "error": "Token not indexed yet, please try again later",
+    "timestamp_est": "9/13/2024, 2:30:37 AM"
   },
   {
     "price": null,
-    "timestamp": 1734413957000,
-    "mint": "FeNYHjGXijAKN8kYiKKJtSRG9U9jDokAxL8B7kP1RD9J",
-    "queriedBlockTime": 1734413957,
-    "error": "Internal Server Error",
-    "timestamp_est": "12/17/2024, 12:39:17 AM"
+    "timestamp": 1735414797000,
+    "mint": "pVE2H3zx7m33zvCSTm3aGCt78UDBJuVzJC3r3sHQWTF",
+    "queriedBlockTime": 1735414797,
+    "error": "Token not indexed yet, please try again later",
+    "timestamp_est": "12/28/2024, 2:39:57 PM"
   },
   {
     "price": null,
-    "timestamp": 1734413957000,
-    "mint": "FeNYHjGXijAKN8kYiKKJtSRG9U9jDokAxL8B7kP1RD9J",
-    "queriedBlockTime": 1734413957,
+    "timestamp": 1735389991000,
+    "mint": "7rAcrfXUPW92cV9aCqdBF64hW6oNgUwAbiPtxfUk4FKE",
+    "queriedBlockTime": 1735389991,
     "error": "Internal Server Error",
-    "timestamp_est": "12/17/2024, 12:39:17 AM"
-  },
-  {
-    "price": null,
-    "timestamp": 1734413957000,
-    "mint": "FeNYHjGXijAKN8kYiKKJtSRG9U9jDokAxL8B7kP1RD9J",
-    "queriedBlockTime": 1734413957,
-    "error": "Internal Server Error",
-    "timestamp_est": "12/17/2024, 12:39:17 AM"
-  },
-  {
-    "price": null,
-    "timestamp": 1734413937000,
-    "mint": "FeNYHjGXijAKN8kYiKKJtSRG9U9jDokAxL8B7kP1RD9J",
-    "queriedBlockTime": 1734413937,
-    "error": "Internal Server Error",
-    "timestamp_est": "12/17/2024, 12:38:57 AM"
-  },
-  {
-    "price": null,
-    "timestamp": 1734413937000,
-    "mint": "FeNYHjGXijAKN8kYiKKJtSRG9U9jDokAxL8B7kP1RD9J",
-    "queriedBlockTime": 1734413937,
-    "error": "Internal Server Error",
-    "timestamp_est": "12/17/2024, 12:38:57 AM"
-  },
-  {
-    "price": null,
-    "timestamp": 1734413937000,
-    "mint": "FeNYHjGXijAKN8kYiKKJtSRG9U9jDokAxL8B7kP1RD9J",
-    "queriedBlockTime": 1734413937,
-    "error": "Internal Server Error",
-    "timestamp_est": "12/17/2024, 12:38:57 AM"
+    "timestamp_est": "12/28/2024, 7:46:31 AM"
   }
 ]

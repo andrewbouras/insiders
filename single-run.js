@@ -1,6 +1,111 @@
 const fs = require('fs');
 const axios = require('axios');
 const Bottleneck = require('bottleneck');
+const { HttpsProxyAgent } = require('https-proxy-agent');
+
+// Split proxy pools for different endpoints
+const signatureProxyPool = Array.from({ length: 50 }, (_, i) => ({
+  url: `http://2345678a-${i + 1}:2345678a@p.webshare.io:80`,
+  lastUsed: 0
+}));
+
+const transactionProxyPool = Array.from({ length: 50 }, (_, i) => ({
+  url: `http://2345678a-${i + 51}:2345678a@p.webshare.io:80`,
+  lastUsed: 0
+}));
+
+let signatureProxyIndex = 0;
+let transactionProxyIndex = 0;
+
+// Separate proxy usage tracking for each endpoint
+const signatureProxyUsage = new Map(Array.from({ length: 50 }, (_, i) => [
+  `signature-proxy-${i + 1}`,
+  {
+    requests: 0,
+    lastReset: Date.now(),
+    limiter: new Bottleneck({
+      reservoir: 100,
+      reservoirRefreshAmount: 100,
+      reservoirRefreshInterval: 10000,
+      maxConcurrent: 100
+    })
+  }
+]));
+
+const transactionProxyUsage = new Map(Array.from({ length: 50 }, (_, i) => [
+  `transaction-proxy-${i + 1}`,
+  {
+    requests: 0,
+    lastReset: Date.now(),
+    limiter: new Bottleneck({
+      reservoir: 100,
+      reservoirRefreshAmount: 100,
+      reservoirRefreshInterval: 10000,
+      maxConcurrent: 100
+    })
+  }
+]));
+
+// Separate functions to get proxies for each endpoint
+function getNextSignatureProxy() {
+  const now = Date.now();
+  let selectedProxy = null;
+
+  for (let i = 0; i < signatureProxyPool.length; i++) {
+    const proxyIndex = (signatureProxyIndex + i) % signatureProxyPool.length;
+    const proxyKey = `signature-proxy-${proxyIndex + 1}`;
+    const proxyState = signatureProxyUsage.get(proxyKey);
+
+    if (now - proxyState.lastReset >= 10000) {
+      proxyState.requests = 0;
+      proxyState.lastReset = now;
+    }
+
+    if (proxyState.requests < 100) {
+      selectedProxy = signatureProxyPool[proxyIndex];
+      proxyState.requests++;
+      signatureProxyIndex = (proxyIndex + 1) % signatureProxyPool.length;
+      break;
+    }
+  }
+
+  if (!selectedProxy) {
+    console.log('All signature proxies at rate limit, waiting for reset...');
+    return new Promise(resolve => setTimeout(() => resolve(getNextSignatureProxy()), 1000));
+  }
+
+  return new HttpsProxyAgent(selectedProxy.url);
+}
+
+function getNextTransactionProxy() {
+  const now = Date.now();
+  let selectedProxy = null;
+
+  for (let i = 0; i < transactionProxyPool.length; i++) {
+    const proxyIndex = (transactionProxyIndex + i) % transactionProxyPool.length;
+    const proxyKey = `transaction-proxy-${proxyIndex + 1}`;
+    const proxyState = transactionProxyUsage.get(proxyKey);
+
+    if (now - proxyState.lastReset >= 10000) {
+      proxyState.requests = 0;
+      proxyState.lastReset = now;
+    }
+
+    if (proxyState.requests < 100) {
+      selectedProxy = transactionProxyPool[proxyIndex];
+      proxyState.requests++;
+      transactionProxyIndex = (proxyIndex + 1) % transactionProxyPool.length;
+      break;
+    }
+  }
+
+  if (!selectedProxy) {
+    console.log('All transaction proxies at rate limit, waiting for reset...');
+    return new Promise(resolve => setTimeout(() => resolve(getNextTransactionProxy()), 1000));
+  }
+
+  return new HttpsProxyAgent(selectedProxy.url);
+}
 
 // Function to read JSON file
 function readJSONFile(filePath) {
@@ -12,30 +117,53 @@ function writeJSONFile(filePath, data) {
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
 }
 
+// Create separate limiters for different API endpoints
+const solanaMainnetLimiter = new Bottleneck({
+  reservoir: 100, // 100 requests
+  reservoirRefreshAmount: 100,
+  reservoirRefreshInterval: 11000, // 11 seconds (added 1 second buffer)
+  maxConcurrent: 100
+});
+
+// Update Solana Tracker limiter to use per-proxy rate limiting
+const solanaTrackerLimiter = new Bottleneck({
+  reservoir: 100,
+  reservoirRefreshAmount: 100,
+  reservoirRefreshInterval: 2000, // 2 seconds
+  maxConcurrent: 1, // Only one request at a time per proxy
+  minTime: 2000 // Minimum time between requests per proxy
+});
+
 // Function to fetch transaction signatures
 async function fetchSignatures(walletAddress) {
-  try {
-    const response = await axios.post('https://api.mainnet-beta.solana.com', {
-      jsonrpc: '2.0',
-      id: 1,
-      method: 'getSignaturesForAddress',
-      params: [
-        walletAddress,
-        { limit: 20 }
-      ]
-    }, {
-      headers: { 'Content-Type': 'application/json' }
-    });
+  const makeRequest = async () => {
+    try {
+      const response = await axios.post('https://api.mainnet-beta.solana.com', {
+        jsonrpc: '2.0',
+        id: 1,
+        method: 'getSignaturesForAddress',
+        params: [
+          walletAddress,
+          { limit: 5 }
+        ]
+      }, {
+        headers: { 'Content-Type': 'application/json' },
+        httpsAgent: await getNextSignatureProxy()
+      });
+      
+      // Add this mapping to match the old implementation
+      const filtered = response.data.result.map(item => ({
+        blockTime: item.blockTime,
+        signature: item.signature
+      }));
+      return filtered; // Return the filtered data instead of raw result
+    } catch (error) {
+      console.error(`Error fetching signatures: ${error.message}`);
+      return [];
+    }
+  };
 
-    const filtered = response.data.result.map(item => ({
-      blockTime: item.blockTime,
-      signature: item.signature
-    }));
-    return filtered;
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
+  return solanaMainnetLimiter.schedule(makeRequest);
 }
 
 // Function to enhance with transaction data
@@ -43,84 +171,47 @@ async function enhanceSignatures(signatures) {
   const rawTransactions = [];
   const results = [];
 
-  // Function to fetch a single transaction with retry logic
-  async function fetchTransaction(signature) {
-    let attempts = 0;
-    const maxAttempts = 5;
-
-    while (attempts < maxAttempts) {
-      try {
-        console.log(`Fetching transaction for signature: ${signature} (Attempt ${attempts + 1})`);
-        const response = await axios.post('https://api.mainnet-beta.solana.com', {
-          jsonrpc: '2.0',
-          id: 1,
-          method: 'getTransaction',
-          params: [
-            signature,
-            {
-              encoding: 'json',
-              maxSupportedTransactionVersion: 0
-            }
-          ]
-        }, {
-          headers: { 'Content-Type': 'application/json' }
-        });
-
-        const transaction = response.data.result;
-        if (transaction.preTokenBalances) {
-          console.log(`preTokenBalances found for signature: ${signature}`);
-        } else {
-          console.log(`preTokenBalances NOT found for signature: ${signature}`);
-        }
-        if (transaction.postTokenBalances) {
-          console.log(`postTokenBalances found for signature: ${signature}`);
-        } else {
-          console.log(`postTokenBalances NOT found for signature: ${signature}`);
-        }
-
-        rawTransactions.push(transaction);
-
-        const mint = transaction.preTokenBalances && transaction.preTokenBalances.length > 0
-          ? transaction.preTokenBalances[0].mint
-          : null;
-
-        console.log(`Successfully fetched transaction for signature: ${signature}`);
-        return { signature, mint };
-      } catch (error) {
-        if (error.response && error.response.status === 429 && attempts < maxAttempts - 1) {
-          const retryAfter = parseInt(error.response.headers['retry-after'], 10) || 10;
-          console.warn(`Rate limited. Retrying after ${retryAfter} seconds... (Attempt ${attempts + 1})`);
-          await new Promise(res => setTimeout(res, retryAfter * 1000));
-          attempts++;
-        } else {
-          console.error(`Error fetching transaction for signature ${signature}:`, error.message);
-          return { signature, mint: null };
-        }
-      }
+  for (let i = 0; i < signatures.length; i++) {
+    console.log(`Processing signature: ${signatures[i].signature}`);
+    const transaction = await fetchTransaction(signatures[i].signature);
+    
+    if (transaction) {
+      rawTransactions.push(transaction); // Store the raw transaction
+      const mint = transaction.meta?.preTokenBalances?.[0]?.mint || 
+                  transaction.meta?.postTokenBalances?.[0]?.mint || null;
+      results.push({ signature: signatures[i].signature, mint });
     }
   }
 
-  // Bottleneck for rate limiting
-  const limiter = new Bottleneck({
-    reservoir: 10, // Further reduce to 10 requests
-    reservoirRefreshAmount: 10,
-    reservoirRefreshInterval: 10 * 1000, // Refresh every 10 seconds
-    maxConcurrent: 1,
-    minTime: 1000 // 1 second between requests
-  });
-
-  const limitedFetchTransaction = limiter.wrap(fetchTransaction);
-
-  // Process each signature in series
-  for (const s of signatures) {
-    console.log(`Processing signature: ${s.signature}`);
-    const result = await limitedFetchTransaction(s.signature);
-    results.push(result);
-  }
-
-  console.log('All transactions processed.');
-
+  // Write raw transactions immediately
+  fs.writeFileSync('rawTransactions.json', JSON.stringify(rawTransactions, null, 2));
   return { results, rawTransactions };
+}
+
+// Function to fetch transaction details
+async function fetchTransaction(signature) {
+  try {
+    const response = await axios.post('https://api.mainnet-beta.solana.com', {
+      jsonrpc: '2.0',
+      id: 1,
+      method: 'getTransaction',
+      params: [
+        signature,
+        {
+          encoding: 'json',
+          maxSupportedTransactionVersion: 0
+        }
+      ]
+    }, {
+      headers: { 'Content-Type': 'application/json' },
+      httpsAgent: await getNextTransactionProxy()
+    });
+    
+    return response.data.result;
+  } catch (error) {
+    console.error(`Error fetching transaction ${signature}: ${error.message}`);
+    return null;
+  }
 }
 
 // Function to parse mint addresses
@@ -200,149 +291,245 @@ function convertTimestamps(transactions) {
   return updatedOutput;
 }
 
-// Function to fetch prices
-async function fetchPrices(transactions) {
-  require('dotenv').config();
-  const API_KEY = process.env.SOLANA_TRACKER_API_KEY;
+// Add proxy tracking with cooldown
+const proxyUsageMap = new Map();
+const COOLDOWN_TIME = 3000; // 3 seconds cooldown
+const REQUEST_QUEUE = [];
+let isProcessingQueue = false;
 
-  const limiter = new Bottleneck({
-    minTime: 1000, 
-    maxConcurrent: 1,
-    retry: {
-      retries: 5,
-      minTimeout: 2000, 
-      maxTimeout: 10000,
-      backoffFactor: 2
-    }
-  });
-
-  limiter.on('failed', async (error, jobInfo) => {
-    if (error.response?.status === 429) {
-      const retryAfter = parseInt(error.response.headers['retry-after'], 10) || 10;
-      console.log(`Rate limited. Waiting ${retryAfter} seconds before retry ${jobInfo.retryCount + 1}`);
-      return retryAfter * 1000;
-    }
-  });
-
-  async function fetchPrice(mint, blockTime) {
-    try {
-      const timestamp = blockTime * 1000;
-      console.log(`Fetching price for mint ${mint} at timestamp ${timestamp}`);
-      const response = await axios.get(
-        `https://data.solanatracker.io/price/history/timestamp?token=${mint}&timestamp=${timestamp}`,
-        { headers: { 'x-api-key': API_KEY } }
-      );
-
-      // Check if response contains "Internal Server Error"
-      if (response.data && response.data.error === "Internal Server Error") {
-        console.log(`Internal Server Error received for mint ${mint}`);
-        return {
-          price: null,
-          timestamp,
-          mint,
-          queriedBlockTime: blockTime,
-          error: "Internal Server Error"
-        };
-      }
-
-      console.log(`Successfully fetched price for mint ${mint}`);
-      return {
-        ...response.data,
-        mint,
-        queriedBlockTime: blockTime
-      };
-    } catch (error) {
-      if (error.response?.status === 429) {
-        console.log(`Rate limit hit for mint ${mint}, letting Bottleneck handle retries.`);
-        throw error;
-      }
-      console.error(`Error fetching price for mint ${mint}:`, error.message);
-      return {
-        price: null,
-        timestamp: blockTime * 1000,
-        mint,
-        queriedBlockTime: blockTime,
-        error: error.message
-      };
-    }
+class ProxyManager {
+  constructor(proxyPool) {
+    this.proxyPool = proxyPool;
+    this.proxyStates = new Map();
+    this.initializeProxyStates();
   }
 
-  const wrappedFetchPrice = limiter.wrap(fetchPrice);
-  const prices = [];
-
-  for (const { mint, blockTime } of transactions) {
-    try {
-      const price = await wrappedFetchPrice(mint, blockTime);
-      if (price) {
-        prices.push(price);
-        console.log(`Added price data for mint ${mint}`);
-      }
-    } catch (error) {
-      console.error(`Failed to fetch price for mint ${mint} after all retries:`, error.message);
-    }
-  }
-
-  fs.writeFileSync('prices.json', JSON.stringify(prices, null, 2));
-  console.log(`Price data has been written to prices.json for ${prices.length} tokens`);
-  return prices;
-}
-
-// Function to filter prices
-function filterPrices(prices) {
-  // Helper function to convert Unix timestamp to EST
-  function convertToEST(timestamp) {
-    const date = new Date(timestamp);
-    return date.toLocaleString('en-US', {
-      timeZone: 'America/New_York',
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      hour12: true
+  initializeProxyStates() {
+    this.proxyPool.forEach(proxy => {
+      this.proxyStates.set(proxy.url, {
+        lastUsed: 0,
+        failureCount: 0,
+        cooldownUntil: 0
+      });
     });
   }
 
-  // Add EST time to each price object
-  const pricesWithEST = prices.map(price => ({
-    ...price,
-    timestamp_est: convertToEST(price.timestamp)
-  }));
+  async getAvailableProxy() {
+    const now = Date.now();
+    const availableProxies = this.proxyPool.filter(proxy => {
+      const state = this.proxyStates.get(proxy.url);
+      return now >= state.cooldownUntil && state.failureCount < 3;
+    });
 
-  // First split into null and valid prices
-  const initialNullPrices = pricesWithEST.filter(item => item.price === null);
-  const initialValidPrices = pricesWithEST.filter(item => item.price !== null);
-
-  // Deduplicate null prices
-  const nullMintMap = new Map();
-  initialNullPrices.forEach(price => {
-    if (!nullMintMap.has(price.mint)) {
-      nullMintMap.set(price.mint, price);
+    if (availableProxies.length === 0) {
+      // Wait for the proxy with shortest cooldown
+      const earliestAvailable = Math.min(
+        ...Array.from(this.proxyStates.values()).map(state => state.cooldownUntil)
+      );
+      const waitTime = Math.max(0, earliestAvailable - now);
+      await new Promise(resolve => setTimeout(resolve, waitTime));
+      return this.getAvailableProxy();
     }
-  });
 
-  // Deduplicate valid prices
-  const validMintMap = new Map();
-  initialValidPrices.forEach(price => {
-    if (!validMintMap.has(price.mint) || 
-        price.timestamp > validMintMap.get(price.mint).timestamp) {
-      validMintMap.set(price.mint, price);
-    }
-  });
+    // Sort by last used time and failure count
+    const proxy = availableProxies.sort((a, b) => {
+      const stateA = this.proxyStates.get(a.url);
+      const stateB = this.proxyStates.get(b.url);
+      return (stateA.lastUsed - stateB.lastUsed) || (stateA.failureCount - stateB.failureCount);
+    })[0];
 
-  const uniqueNullPrices = Array.from(nullMintMap.values());
-  const uniqueValidPrices = Array.from(validMintMap.values());
+    this.proxyStates.get(proxy.url).lastUsed = now;
+    return proxy;
+  }
 
-  fs.writeFileSync('prices-null.json', JSON.stringify(uniqueNullPrices, null, 2));
-  fs.writeFileSync('prices-valid.json', JSON.stringify(uniqueValidPrices, null, 2));
+  markProxyFailure(proxyUrl) {
+    const state = this.proxyStates.get(proxyUrl);
+    state.failureCount++;
+    state.cooldownUntil = Date.now() + (COOLDOWN_TIME * Math.pow(2, state.failureCount));
+  }
 
-  console.log(`Found ${uniqueNullPrices.length} unique null prices and ${uniqueValidPrices.length} unique valid prices`);
-  console.log('Deduplicated data has been written to prices-null.json and prices-valid.json');
+  resetProxyState(proxyUrl) {
+    const state = this.proxyStates.get(proxyUrl);
+    state.failureCount = 0;
+    state.cooldownUntil = Date.now() + COOLDOWN_TIME;
+  }
 }
 
+// Initialize proxy managers
+const priceProxyManager = new ProxyManager(transactionProxyPool);
+
+// API Key Management
+class ApiKeyManager {
+  constructor() {
+    require('dotenv').config();
+    const apiKeysString = process.env.SOLANA_TRACKER_API_KEY || '';
+    this.apiKeys = apiKeysString.split(',').map(key => key.trim()).filter(key => key.length > 0);
+    this.currentIndex = 0;
+    this.keyUsage = new Map();
+    
+    // Initialize usage tracking for each key
+    this.apiKeys.forEach(key => {
+      this.keyUsage.set(key, {
+        lastUsed: 0,
+        failureCount: 0,
+        limiter: new Bottleneck({
+          minTime: 2000, // 2 seconds between requests
+          maxConcurrent: 1
+        })
+      });
+    });
+  }
+
+  getNextApiKey() {
+    const key = this.apiKeys[this.currentIndex];
+    this.currentIndex = (this.currentIndex + 1) % this.apiKeys.length;
+    return key;
+  }
+
+  async getAvailableApiKey() {
+    const now = Date.now();
+    for (const key of this.apiKeys) {
+      const usage = this.keyUsage.get(key);
+      if (now - usage.lastUsed >= 2000 && usage.failureCount < 3) {
+        usage.lastUsed = now;
+        return key;
+      }
+    }
+    // If no key is immediately available, wait for the least recently used one
+    const leastRecentKey = [...this.keyUsage.entries()]
+      .sort(([, a], [, b]) => a.lastUsed - b.lastUsed)[0][0];
+    const usage = this.keyUsage.get(leastRecentKey);
+    await new Promise(resolve => setTimeout(resolve, 2000 - (now - usage.lastUsed)));
+    usage.lastUsed = Date.now();
+    return leastRecentKey;
+  }
+
+  markKeyFailure(key) {
+    const usage = this.keyUsage.get(key);
+    usage.failureCount++;
+    if (usage.failureCount >= 3) {
+      console.log(`API key ${key.substring(0, 8)}... has been temporarily disabled due to failures`);
+    }
+  }
+
+  resetKeyFailures(key) {
+    const usage = this.keyUsage.get(key);
+    usage.failureCount = 0;
+  }
+
+  get concurrentRequests() {
+    return this.apiKeys.length;
+  }
+}
+
+// Initialize API key manager globally
+const apiKeyManager = new ApiKeyManager();
+
+// Update fetchPrices function to use API key rotation
+async function fetchPrices(transactions) {
+  const prices = [];
+  const batchSize = apiKeyManager.concurrentRequests;
+
+  async function fetchPriceWithRetry(tx, attempt = 1, maxAttempts = 3) {
+    const apiKey = await apiKeyManager.getAvailableApiKey();
+    const proxy = await priceProxyManager.getAvailableProxy();
+    
+    try {
+      const timestamp = tx.blockTime * 1000;
+      
+      console.log(`Fetching price for mint ${tx.mint} using API key ${apiKey.substring(0, 8)}... and proxy ${proxy.url.substring(0, 15)}... (Attempt ${attempt}/${maxAttempts})`);
+      
+      const response = await axios.get(
+        `https://data.solanatracker.io/price/history/timestamp?token=${tx.mint}&timestamp=${timestamp}`,
+        { 
+          headers: { 'x-api-key': apiKey },
+          timeout: 30000,
+          validateStatus: (status) => true,
+          httpsAgent: new HttpsProxyAgent(proxy.url)
+        }
+      );
+
+      if (response.status === 429 || response.data?.error?.includes('rate limit')) {
+        apiKeyManager.markKeyFailure(apiKey);
+        priceProxyManager.markProxyFailure(proxy.url);
+        
+        if (attempt < maxAttempts) {
+          console.log(`Rate limit hit for ${tx.mint}, retrying with different API key/proxy...`);
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          return fetchPriceWithRetry(tx, attempt + 1, maxAttempts);
+        }
+      } else {
+        apiKeyManager.resetKeyFailures(apiKey);
+        priceProxyManager.resetProxyState(proxy.url);
+      }
+
+      return {
+        price: response.data?.price || null,
+        timestamp: timestamp,
+        pool: response.data?.pool,
+        mint: tx.mint,
+        queriedBlockTime: tx.blockTime,
+        error: response.data?.error || null,
+        timestamp_est: new Date(timestamp).toLocaleString('en-US', {
+          timeZone: 'America/New_York'
+        })
+      };
+
+    } catch (error) {
+      apiKeyManager.markKeyFailure(apiKey);
+      priceProxyManager.markProxyFailure(proxy.url);
+      
+      if (attempt < maxAttempts) {
+        console.log(`Error for ${tx.mint}, retrying with different API key/proxy...`);
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        return fetchPriceWithRetry(tx, attempt + 1, maxAttempts);
+      }
+      
+      return {
+        price: null,
+        timestamp: tx.blockTime * 1000,
+        mint: tx.mint,
+        queriedBlockTime: tx.blockTime,
+        error: error.response?.data?.error || "Internal Server Error",
+        timestamp_est: new Date(tx.blockTime * 1000).toLocaleString('en-US', {
+          timeZone: 'America/New_York'
+        })
+      };
+    }
+  }
+
+  // Process transactions in parallel based on available API keys
+  for (let i = 0; i < transactions.length; i += batchSize) {
+    const batch = transactions.slice(i, i + batchSize);
+    const batchPromises = batch.map(tx => fetchPriceWithRetry(tx));
+    const batchResults = await Promise.all(batchPromises);
+    prices.push(...batchResults);
+  }
+
+  return prices;
+}
+
+// Enhanced filterPrices function
+function filterPrices(prices) {
+  const validPrices = prices.filter(price => 
+    price.price !== null && 
+    price.pool && 
+    !price.error && 
+    !isNaN(new Date(price.timestamp).getTime())
+  );
+
+  const nullPrices = prices.filter(price => 
+    !validPrices.find(v => v.mint === price.mint)
+  );
+
+  writeJSONFile('prices-valid.json', validPrices);
+  writeJSONFile('prices-null.json', nullPrices);
+
+  console.log(`Found ${nullPrices.length} null prices and ${validPrices.length} valid prices`);
+}
+
+// Update singleRunFlow for parallel processing
 async function singleRunFlow() {
-  // 1) Read input.json
   const input = readJSONFile('input.json');
   let walletAddresses = [];
 
@@ -355,44 +542,147 @@ async function singleRunFlow() {
     return;
   }
 
-  let allSignatures = [];
-  let allEnhancedData = [];
-  let allRawTransactions = [];
-  let allPrices = [];
+  // Process wallets in parallel with controlled concurrency
+  const walletLimiter = new Bottleneck({
+    maxConcurrent: 5,
+    minTime: 1000
+  });
 
-  for (const walletAddress of walletAddresses) {
+  async function processWallet(walletAddress) {
     console.log(`Processing wallet address: ${walletAddress}`);
     
-    // 2) Fetch transaction signatures
+    // Fetch signatures and transactions in parallel
     const signatures = await fetchSignatures(walletAddress);
-    allSignatures.push(...signatures);
+    
+    // Process signatures in batches
+    const signatureBatches = [];
+    const batchSize = 5;
+    
+    for (let i = 0; i < signatures.length; i += batchSize) {
+      signatureBatches.push(signatures.slice(i, i + batchSize));
+    }
 
-    // 3) Enhance with transaction data
-    const { results, rawTransactions } = await enhanceSignatures(signatures);
-    allEnhancedData.push(...results);
-    allRawTransactions.push(...rawTransactions);
+    const enhancedResults = [];
+    const rawTransactions = [];
+
+    await Promise.all(signatureBatches.map(async (batch) => {
+      const { results, rawTransactions: batchRaw } = await enhanceSignatures(batch);
+      enhancedResults.push(...results);
+      rawTransactions.push(...batchRaw);
+    }));
+
+    return { enhancedResults, rawTransactions };
   }
 
+  // Process all wallets concurrently
+  const walletResults = await Promise.all(
+    walletAddresses.map(address => 
+      walletLimiter.schedule(() => processWallet(address))
+    )
+  );
+
+  // Combine results
+  const allEnhancedData = [];
+  const allRawTransactions = [];
+
+  walletResults.forEach(({ enhancedResults, rawTransactions }) => {
+    allEnhancedData.push(...enhancedResults);
+    allRawTransactions.push(...rawTransactions);
+  });
+
   // Write combined data
-  fs.writeFileSync('enhancedOutput.json', JSON.stringify(allEnhancedData, null, 2));
-  fs.writeFileSync('rawTransactions.json', JSON.stringify(allRawTransactions, null, 2));
+  writeJSONFile('enhancedOutput.json', allEnhancedData);
+  writeJSONFile('rawTransactions.json', allRawTransactions);
 
-  // 4) Parse mint addresses
+  // Parse and process in parallel
   const parsedTransactions = parseMintAddresses(allEnhancedData);
-
-  // 5) Add blockTime (optional if needed)
-  // ...existing code to map blockTime if required...
-
-  // 6) Convert timestamps
   const transactionsWithTimestamps = convertTimestamps(parsedTransactions);
 
-  // 7) Fetch prices
+  // Fetch prices with improved validation
   const prices = await fetchPrices(transactionsWithTimestamps);
-  allPrices.push(...prices);
 
-  // 8) Filter into prices-valid.json and prices-null.json
-  filterPrices(allPrices);
+  filterPrices(prices);
+  console.log('Done! Generated prices-valid.json and prices-null.json');
+}
 
+async function processSignaturesParallel(walletAddress) {
+  const signatures = await fetchSignatures(walletAddress);
+  const signatureTasks = [];
+  const batchSize = 5;
+
+  for (let i = 0; i < signatures.length; i += batchSize) {
+    // Process each batch of signatures in parallel
+    const batch = signatures.slice(i, i + batchSize);
+    const task = Promise.all(batch.map(async (sig) => {
+      const { results, rawTransactions } = await enhanceSignatures([sig]);
+      // Immediately parse mint addresses and fetch prices
+      const parsed = parseMintAddresses(results);
+      const withTimestamps = convertTimestamps(parsed);
+      const prices = await fetchPrices(withTimestamps);
+      return { enhancements: results, txData: rawTransactions, prices };
+    }));
+    signatureTasks.push(task);
+  }
+
+  const batchResults = await Promise.all(signatureTasks);
+  // Consolidate
+  const enhancedResults = [];
+  const rawTransactions = [];
+  const allPrices = [];
+
+  for (const batch of batchResults) {
+    for (const item of batch) {
+      enhancedResults.push(...item.enhancements);
+      rawTransactions.push(...item.txData);
+      allPrices.push(...item.prices);
+    }
+  }
+
+  fs.writeFileSync('enhancedOutput.json', JSON.stringify(enhancedResults, null, 2));
+  fs.writeFileSync('rawTransactions.json', JSON.stringify(rawTransactions, null, 2));
+  return allPrices;
+}
+
+// Update singleRunFlow to run processSignaturesParallel immediately for each wallet
+async function singleRunFlow() {
+  const input = readJSONFile('input.json');
+  let walletAddresses = [];
+
+  if (input.walletAddresses && Array.isArray(input.walletAddresses)) {
+    walletAddresses = input.walletAddresses;
+  } else if (input.walletAddress) {
+    walletAddresses = [input.walletAddress];
+  } else {
+    console.error('No walletAddress or walletAddresses found in input.json');
+    return;
+  }
+
+  const walletLimiter = new Bottleneck({
+    maxConcurrent: 5,
+    minTime: 1000
+  });
+
+  const walletsParallel = walletAddresses.map((addr) => 
+    walletLimiter.schedule(() => processSignaturesParallel(addr))
+  );
+  const allResults = await Promise.all(walletsParallel);
+  const combinedPrices = allResults.flat();
+
+  // Filter final prices
+  function filterPrices(prices) {
+    const validPrices = prices.filter(price =>
+      price.price !== null &&
+      price.pool &&
+      !price.error &&
+      !isNaN(new Date(price.timestamp).getTime())
+    );
+    const nullPrices = prices.filter(price => !validPrices.find(v => v.mint === price.mint));
+    writeJSONFile('prices-valid.json', validPrices);
+    writeJSONFile('prices-null.json', nullPrices);
+    console.log(`Found ${nullPrices.length} null prices and ${validPrices.length} valid prices`);
+  }
+
+  filterPrices(combinedPrices);
   console.log('Done! Generated prices-valid.json and prices-null.json');
 }
 
